@@ -11,7 +11,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 public interface UserRepo extends MongoRepository<Users, Long>,UserRepositoryTemplate{
 	
 	Users findByEmail(String email);
-
 	Users findByFirstName(String name);
 
 }

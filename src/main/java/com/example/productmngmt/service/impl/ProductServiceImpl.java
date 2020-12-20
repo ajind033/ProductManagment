@@ -218,5 +218,4 @@ public class ProductServiceImpl implements ProductService {
 		blackListedToken.setAccesToken(jwtUtil.getToken());
 		blackListedTokenRepo.save(blackListedToken);
 	}
-
 }
