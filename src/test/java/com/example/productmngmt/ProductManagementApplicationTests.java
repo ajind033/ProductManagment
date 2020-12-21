@@ -38,7 +38,7 @@ import com.example.productmngmt.exceptionhandler.NegativeArgumentException;
 import com.example.productmngmt.exceptionhandler.NoSuchProductFound;
 import com.example.productmngmt.exceptionhandler.ProductAlreadyExists;
 import com.example.productmngmt.repo.ProductRepo;
-import com.example.productmngmt.repo.UserRepo;
+import com.example.productmngmt.repo.UsersRepository;
 import com.example.productmngmt.service.ProductService;
 import com.example.productmngmt.service.SequenceGenrationService;
 
@@ -59,7 +59,7 @@ class ProductManagementApplicationTests {
 	ProductRepo productRepo;
 
 	@Autowired
-	UserRepo userRepo;
+	UsersRepository userRepo;
 
 	@Autowired
 	Dtos dtos;

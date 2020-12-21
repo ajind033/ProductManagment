@@ -34,7 +34,7 @@ import com.example.productmngmt.exceptionhandler.NoSuchProductFound;
 import com.example.productmngmt.exceptionhandler.ProductAlreadyExists;
 import com.example.productmngmt.repo.BlackListedTokenRepo;
 import com.example.productmngmt.repo.ProductRepo;
-import com.example.productmngmt.repo.UserRepo;
+import com.example.productmngmt.repo.UsersRepository;
 import com.example.productmngmt.security.jwt.AuthRequest;
 import com.example.productmngmt.security.jwt.JwtTokenProvider;
 import com.example.productmngmt.security.jwt.JwtUtil;
@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
 	CryptoUtil cryptoUtil;
 
 	@Autowired
-	UserRepo userRepo;
+	UsersRepository userRepo;
 
 	@Autowired
 	JwtUtil jwtUtil;
@@ -142,7 +142,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Page<Product> getAll(String search, Pageable pageable) {
-		Page<Product> products = productRepo.findByNamePartialSearch(search, pageable);
+		Page<Product> products = productRepo.findProductByNameIgnoreCase(search, pageable);
 		if (products.isEmpty())
 			throw new NoSuchProductFound(Constants.NO_RESULT_FOUND);
 		else

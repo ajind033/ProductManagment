@@ -1,14 +1,14 @@
 package com.example.productmngmt.repo;
 
-import org.springframework.stereotype.Repository;
 
 import com.example.productmngmt.entity.Users;
 import com.example.productmngmt.template.UserRepositoryTemplate;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepo extends MongoRepository<Users, Long>,UserRepositoryTemplate{
+public interface UsersRepository extends MongoRepository<Users, String>,UserRepositoryTemplate{
 	
 	Users findByEmail(String email);
 	Users findByFirstName(String name);

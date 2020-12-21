@@ -11,6 +11,6 @@ import com.example.productmngmt.entity.Users;
 
 public interface UserRepositoryTemplate {
 	
-	Users findByEncryptEmail(String email,String key) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
+	Users findByEmail(String email,String key) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
 
 }

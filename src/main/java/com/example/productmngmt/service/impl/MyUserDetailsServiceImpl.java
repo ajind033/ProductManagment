@@ -18,13 +18,13 @@ import com.example.productmngmt.dto.Dtos;
 import com.example.productmngmt.entity.Users;
 import com.example.productmngmt.exceptionhandler.BadCredsException;
 import com.example.productmngmt.model.MyUserDetails;
-import com.example.productmngmt.repo.UserRepo;
+import com.example.productmngmt.repo.UsersRepository;
 
 @Service
 public class MyUserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	UserRepo userRepo;
+	UsersRepository userRepo;
 
 	@Autowired
 	Dtos dtos;
@@ -36,7 +36,7 @@ public class MyUserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) {
 		Users decryptedUser = null;
 		try {
-			decryptedUser = dtos.decrypt(userRepo.findByEncryptEmail(username, key));
+			decryptedUser = dtos.decrypt(userRepo.findByEmail(username, key));
 		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException
 				| BadPaddingException e1) {
 			throw new BadCredsException("Incorrect username or password");

@@ -11,21 +11,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Repository;
 
 import com.example.productmngmt.entity.Users;
 import com.example.productmngmt.template.UserRepositoryTemplate;
 import com.example.productmngmt.util.CryptoUtil;
 
+@Repository
 public class UserRepositoryTemplateImpl implements UserRepositoryTemplate{
 
 	@Autowired
 	CryptoUtil cryptoUtil;
 	
 	@Autowired
-	private MongoTemplate mongoTeamplate;
+	MongoTemplate mongoTeamplate;
 	
 	@Override
-	public Users findByEncryptEmail(String email,String key) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	public Users findByEmail(String email,String key) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		Query query = new Query().addCriteria(Criteria.where("email").is(cryptoUtil.encrypt(email, key)));
 		
 		return mongoTeamplate.findOne(query, Users.class,"users");
